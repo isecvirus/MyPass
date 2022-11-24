@@ -12,7 +12,7 @@ interface Vars {
 
     final String author = "SecVirus";
     final String tool_name = "MyPass";
-    final String tool_version = "2.0.0v";
+    final String tool_version = "3.0.0v";
     Formatter tool_title_formatter = new Formatter();
     final Formatter tool_title = tool_title_formatter.format("%s (%s)", tool_name, tool_version);
 
