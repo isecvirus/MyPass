@@ -15,3 +15,8 @@ MyPass is a Cross platform password manager 100% safe and clean.
     - added manager table right click popup menu.
     - ability to delete passwords from manager table.
     - arrange rows index (if arrangement missed).
+# Manual Compile:
+  ```powershell
+  jar -uf MyPass-[VERSION].jar [file1.jar, file2.jar, ...]
+  ```
+  1. Use <b>exe4j</b> to complie the jar to windows 10/11 executeable.
