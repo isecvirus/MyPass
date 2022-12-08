@@ -1,5 +1,6 @@
 package com.virus.MyPass;
 
+import java.awt.FileDialog;
 import java.awt.HeadlessException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,33 +21,55 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
+import javax.swing.JFrame;
 
 /*
  * @author SecVirus
  *
  * This file controls and help interacting..
- * with RSA encryption
+ * with RSA encryption.
  */
 public class RSA {
 
-    public static void generate(String public_filename, String private_filename) /* throws HeadlessException, IOException,  SecurityException,  NoSuchAlgorithmException */ {
-        try {
-            KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-            generator.initialize(Vars.default_key_len);
-            KeyPair key = generator.generateKeyPair();
+    public static void generate() /* throws HeadlessException, IOException,  SecurityException,  NoSuchAlgorithmException */ {
+        JFrame window = new JFrame();
+        FileDialog save_public_to = new FileDialog(window, "Save RSA public key to:", FileDialog.SAVE);
 
-            PrivateKey private_key = key.getPrivate();
-            PublicKey public_key = key.getPublic();
-            
-            write_PublicFile(public_filename, public_key);
-            write_PrivateFile(private_filename, private_key);
+        save_public_to.setFile(Vars.default_public_name);
+        save_public_to.setAlwaysOnTop(true);
+        save_public_to.setVisible(true);
 
-        } catch (HeadlessException | SecurityException | NoSuchAlgorithmException error) {
+        if (save_public_to.getFile() != null) {
+
+            FileDialog save_private_to = new FileDialog(window, "Save RSA private key to:", FileDialog.SAVE);
+
+            save_private_to.setFile(Vars.default_private_name);
+            save_private_to.setAlwaysOnTop(true);
+            save_private_to.setVisible(true);
+
+            String public_file = save_public_to.getDirectory() + save_public_to.getFile();
+            String private_file = save_private_to.getDirectory() + save_private_to.getFile();
+
+            if (save_private_to.getFile() != null) {
+                try {
+                    KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+                    generator.initialize(Vars.default_key_len);
+                    KeyPair key = generator.generateKeyPair();
+
+                    PrivateKey private_key = key.getPrivate();
+                    PublicKey public_key = key.getPublic();
+
+                    write_PublicFile(public_file, public_key);
+                    write_PrivateFile(private_file, private_key);
+
+                } catch (HeadlessException | SecurityException | NoSuchAlgorithmException error) {
+                }
+            }
         }
     }
 
     public static void write_PublicFile(String public_filename, PublicKey public_key) {
-        try (FileWriter public_key_file_object = new FileWriter(public_filename)) {
+        try ( FileWriter public_key_file_object = new FileWriter(public_filename)) {
             byte[] public_bytes = public_key.getEncoded();
             String public_base64_string = Base64.getEncoder().encodeToString(public_bytes);
             public_key_file_object.write(public_base64_string);
@@ -55,7 +78,7 @@ public class RSA {
     }
 
     public static void write_PrivateFile(String private_filename, PrivateKey private_key) {
-        try (FileWriter private_key_file_object = new FileWriter(private_filename)) {
+        try ( FileWriter private_key_file_object = new FileWriter(private_filename)) {
             byte[] private_bytes = private_key.getEncoded();
             String private_base64_string = Base64.getEncoder().encodeToString(private_bytes);
             private_key_file_object.write(private_base64_string);
