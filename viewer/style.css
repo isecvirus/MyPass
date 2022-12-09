@@ -1,0 +1,197 @@
+/* logo color: #ff9800 */
+@import url("https://fonts.googleapis.com/css?family=Convergence"); /* EN */
+html {
+    background-image: url("imgs/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+    font-family: "Convergence";
+}
+
+.navbar-container {
+    display: flex;
+    grid-template-columns: repeat(1fr, 2);
+    grid-template-rows: repeat(1fr, 1);
+}
+.navbar-container .mypass-logo {
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+}
+.navbar-container .mypass-text {
+    user-select: none;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    font-size: 25px;
+    align-items: center;
+    text-align: left;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.content-table {
+    background: rgb(255 255 255 / 0.3);
+    backdrop-filter: blur(25px);
+    margin: 0 auto;
+    margin-top: 25px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 10px;
+}
+.content-table thead {
+    background: rgb(255 255 255 / 0.4);
+}
+.content-table thead th {
+    padding: 10px;
+    border-radius: 2px;
+    width: fit-content;
+}
+.content-table thead th input {width: 100%;}
+
+.content-table tbody * {
+    /* border: 1px black solid; */
+    border-radius: 2px;
+    text-align: center;
+    padding: 10px;
+}
+
+.content-table tbody {
+    background: #22222224;
+}
+
+.content-table tbody .password {
+    display: flex;
+    overflow: hidden;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.content-table tbody .password input {
+    outline: none;
+    background: transparent;
+    padding: 15px;
+    font-family: "Convergence";
+    font-size: 17px;
+    display: flex;
+    width: 100%;
+    border: 1px black solid;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.add {
+    outline: none;
+    background: transparent;
+    padding: 15px;
+    font-family: "Convergence";
+    font-size: 17px;
+    width: 10%;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    transition: 0.5s;
+    cursor: pointer;
+    margin-right: 2px;
+}
+
+.add:hover {
+    background: rgb(255, 255, 255, 0.1);
+}
+
+.new-id {
+    outline: none;
+    background: transparent;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-family: "Convergence";
+    font-size: 17px;
+    /* width: 23%; */
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    margin-right: 2px;
+}
+.new-password {
+    outline: none;
+    background: transparent;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-family: "Convergence";
+    font-size: 17px;
+    display: flex;
+    width: 100%;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+}
+.new-length {
+    outline: none;
+    background: transparent;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-family: "Convergence";
+    font-size: 17px;
+    display: flex;
+    width: 100%;
+    border: none;
+    border-radius: 2px;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}
+
+.output-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 100%;
+    /* border-radius: 8px; */
+}
+.output-container .output-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background: rgb(255 255 255 / 0.9);
+    font-family: "Convergence";
+    text-transform: capitalize;
+    transition: 0.5s;
+}
+.output-container .output-btn:hover {
+    background: rgb(255 255 255);
+}
+.output-container .output-btn:active {
+    background: rgb(255 255 255 / 0.8);
+}
+.output-container .output {
+    resize: vertical;
+    outline: none;
+    border-radius: 8px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    padding: 10px;
+    background: rgb(255 255 255 / 0.5);
+    backdrop-filter: blur(5px);
+}
+
+::selection {
+    background: #ffffff21;
+}
+
+::placeholder {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.402);
+}
