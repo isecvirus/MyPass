@@ -1,0 +1,18 @@
+# Looking bright ideas for this magnificent project
+
+name: MyPass
+version: 3.1.0
+description: MyPass is a Cross platform password manager 100% safe and clean.
+
+
+
+
+versions: &all-versions
+    - 1.0
+    - 2.0
+    - 3.0.0
+    - 3.1.0
+
+more:
+  all-versions: *all-versions
+  old-repo: https://github.com/isecvirus/PasswordGenerator
