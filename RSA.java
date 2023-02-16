@@ -63,6 +63,7 @@ public class RSA {
                     write_PrivateFile(private_file, private_key);
 
                 } catch (HeadlessException | SecurityException | NoSuchAlgorithmException error) {
+                    Prompt.Error(error.getMessage());
                 }
             }
         }
@@ -74,6 +75,7 @@ public class RSA {
             String public_base64_string = Base64.getEncoder().encodeToString(public_bytes);
             public_key_file_object.write(public_base64_string);
         } catch (IOException error) {
+            Prompt.Error(error.getMessage());
         }
     }
 
@@ -83,6 +85,7 @@ public class RSA {
             String private_base64_string = Base64.getEncoder().encodeToString(private_bytes);
             private_key_file_object.write(private_base64_string);
         } catch (Exception error) {
+            Prompt.Error(error.getMessage());
         }
     }
 
@@ -99,6 +102,24 @@ public class RSA {
             return encryptCipher;
 
         } catch (IOException | InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException error) {
+            Prompt.Error(error.getMessage());
+        }
+        return null; // if faild will return null
+    }
+    
+    public static Cipher read_PublicClipboard() {
+        try {
+            byte[] publicKeyBytes = Read.clipboard().getBytes();
+
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyBytes));
+            Key publicKey = keyFactory.generatePublic(publicKeySpec);
+
+            Cipher encryptCipher = Cipher.getInstance("RSA");
+            encryptCipher.init(Cipher.ENCRYPT_MODE, publicKey);
+            return encryptCipher;
+        } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException error) {
+            Prompt.Error(error.getMessage());
         }
         return null; // if faild will return null
     }
@@ -116,6 +137,25 @@ public class RSA {
             decryptCipher.init(Cipher.DECRYPT_MODE, privateKey);
             return decryptCipher;
         } catch (IOException | InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException error) {
+            Prompt.Error(error.getMessage());
+        }
+        return null; // if faild will return null
+    }
+
+    public static Cipher read_PrivateClipboard() {
+        try {
+            String KeyBase64String = Read.clipboard();
+            byte[] KeyBytes = Base64.getDecoder().decode(KeyBase64String);
+
+            PKCS8EncodedKeySpec KeySpec = new PKCS8EncodedKeySpec(KeyBytes);
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            PrivateKey privateKey = kf.generatePrivate(KeySpec);
+
+            Cipher decryptCipher = Cipher.getInstance("RSA");
+            decryptCipher.init(Cipher.DECRYPT_MODE, privateKey);
+            return decryptCipher;
+        } catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException error) {
+            Prompt.Error(error.getMessage());
         }
         return null; // if faild will return null
     }

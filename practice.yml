@@ -1,7 +1,7 @@
 # Looking for bright ideas for this magnificent project
 
 name: MyPass
-version: 3.1.0
+version: 3.2.0
 description: MyPass is a Cross platform password manager 100% safe and clean.
 
 
@@ -12,7 +12,9 @@ versions: &all-versions
     - 2.0
     - 3.0.0
     - 3.1.0
+    - 3.2.0
 
 more:
   all-versions: *all-versions
+  current-repo: https://github.com/isecvirus/MyPass
   old-repo: https://github.com/isecvirus/PasswordGenerator

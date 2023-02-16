@@ -1,5 +1,6 @@
 package com.virus.MyPass;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.util.Formatter;
@@ -8,11 +9,19 @@ import java.util.Formatter;
  *
  * This file contains project variables;
  */
+
+/*
+    ToDo:
+        1 => Make the * asterisk in the app title (indicator for unsaved stuff, settings/passwords.. etc).
+        2 => Warning before close the app if there is any changes that haven't been saved.
+        3 => Support CSV data type as json currently to import, export ..
+*/
+
 interface Vars {
     // title ------------------------
     final String author = "SecVirus";
     final String tool_name = "MyPass";
-    final String tool_version = "3.1.0v";
+    final String tool_version = "3.2.0v";
     
     Formatter tool_title_formatter = new Formatter();
     final Formatter tool_title = tool_title_formatter.format("%s (%s)", tool_name, tool_version);
@@ -79,4 +88,17 @@ interface Vars {
     String default_public_name = "public.rsa";
     String default_private_name = "private.rsa";
     // end -------------------------------------
+    
+    
+    // url request -------------------------
+    int default_timeout = 30;
+    
+    String default_UserAgent = "BlahBlah/0.0 (compatible; AAAA 0.0; BBBB CCC 0.0; .DDDD EEE 0.0.00000)"; // hackers must be anonymous (:
+    // -------------------------------------------------------------------------------------------------
+    
+    // icons -----------------------------
+    int icons_size = 14;
+    
+    // #fe9801
+    Color icons_color = new Color(254, 152, 1, 255); // alpha=255 (means no alpha is used)
 }

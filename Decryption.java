@@ -15,9 +15,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Decryption {
 
-    public static void decrypt(DefaultTableModel table_model) {
+    public static void decrypt_from_file(DefaultTableModel table_model) {
         if (table_model.getRowCount() > 0) {
-            FileDialog key_file = new FileDialog(new JFrame(), "Import (RSA private) key:", FileDialog.LOAD);
+            FileDialog key_file = new FileDialog(new JFrame(), "Import (RSA private) key for decryption:", FileDialog.LOAD);
             key_file.setAlwaysOnTop(true);
             key_file.setVisible(true);
 
@@ -25,26 +25,53 @@ public class Decryption {
                 File import_privatekey_from_file = new File(key_file.getDirectory() + key_file.getFile());
                 if (import_privatekey_from_file.exists()) {
                     Path privatekey_file_path = import_privatekey_from_file.toPath();
+
                     try {
                         Cipher decryptCipher = RSA.read_PrivateFile(privatekey_file_path);
 
-                        if (decryptCipher != null) {
-                            for (int row = 0; row < table_model.getRowCount(); row++) {
-                                String b64password = table_model.getValueAt(row, 2).toString();
-                                byte[] passwordbytes = Base64.getDecoder().decode(b64password.getBytes());
+                        for (int row = 0; row < table_model.getRowCount(); row++) {
+                            String b64password = table_model.getValueAt(row, 2).toString();
+                            byte[] passwordbytes = Base64.getDecoder().decode(b64password.getBytes());
 
-                                byte[] decryptSecretBytes = decryptCipher.doFinal(passwordbytes);
-                                String password = new String(decryptSecretBytes, StandardCharsets.UTF_8);
-                                // decryptedSecretString = password (as plaintext)
-                                int password_length = password.length();
-                                table_model.setValueAt(password, row, Vars.password_index);
-                                table_model.setValueAt(password_length, row, Vars.password_length_index);
-                            }
+                            byte[] decryptSecretBytes = decryptCipher.doFinal(passwordbytes);
+                            String password = new String(decryptSecretBytes, StandardCharsets.UTF_8);
+                            // decryptedSecretString = password (as plaintext)
+                            int password_length = password.length();
+                            table_model.setValueAt(password, row, Vars.password_index);
+                            table_model.setValueAt(password_length, row, Vars.password_length_index);
                         }
-                    } catch (Exception error) { // BadPaddingException | IllegalBlockSizeException | IllegalArgumentException
+                    } catch (Exception error) {
+                        Prompt.Error("Data in the selected file isn't a valid decryption key!");
                     }
                 }
             }
+        } else {
+            Prompt.Error("There is no passwords to decrypt");
+        }
+    }
+
+    public static void decrypt_from_clipboard(DefaultTableModel table_model) {
+        if (table_model.getRowCount() > 0) {
+            try {
+                Cipher decryptCipher = RSA.read_PrivateClipboard();
+
+                for (int row = 0; row < table_model.getRowCount(); row++) {
+                    String b64password = table_model.getValueAt(row, 2).toString();
+                    byte[] passwordbytes = Base64.getDecoder().decode(b64password.getBytes());
+
+                    byte[] decryptSecretBytes = decryptCipher.doFinal(passwordbytes);
+                    String password = new String(decryptSecretBytes, StandardCharsets.UTF_8);
+                    // decryptedSecretString = password (as plaintext)
+                    int password_length = password.length();
+                    table_model.setValueAt(password, row, Vars.password_index);
+                    table_model.setValueAt(password_length, row, Vars.password_length_index);
+                }
+            } catch (Exception error) {
+//                Prompt.Error(error.getMessage());
+                Prompt.Error("Data in the clipbaord isn't a valid decryption key!");
+            }
+        } else {
+            Prompt.Error("There is no passwords to decrypt");
         }
     }
 }

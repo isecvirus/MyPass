@@ -16,12 +16,24 @@ public class Manager {
         renderer.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i = 0; i < columns.length; ++i) {
             table.getColumnModel().getColumn(i).setCellRenderer(renderer);
-            table.getColumnModel().getColumn(i).setMinWidth(columns[i].length() * 20);
+//            table.getColumnModel().getColumn(i).setMinWidth(columns[i].length() * 20);
             table.getColumnModel().getColumn(i).setResizable(true);
         }
-        table.getColumnModel().getColumn(Vars.no_index).setMaxWidth(100);
-        table.getColumnModel().getColumn(Vars.id_index).setMaxWidth(250);
-        table.getColumnModel().getColumn(Vars.password_length_index).setMaxWidth(100);
+        table.getColumnModel().getColumn(Vars.no_index).setWidth(15);
+        table.getColumnModel().getColumn(Vars.no_index).setMinWidth(10);
+        table.getColumnModel().getColumn(Vars.no_index).setMaxWidth(50);
+        
+        table.getColumnModel().getColumn(Vars.id_index).setWidth(50);
+        table.getColumnModel().getColumn(Vars.id_index).setMinWidth(25);
+        table.getColumnModel().getColumn(Vars.id_index).setMaxWidth(200);
+        
+//        table.getColumnModel().getColumn(Vars.password_index).setWidth(150);
+        table.getColumnModel().getColumn(Vars.password_index).setMinWidth(50);
+//        table.getColumnModel().getColumn(Vars.password_index).setMaxWidth(400);
+//        
+        table.getColumnModel().getColumn(Vars.password_length_index).setWidth(50);
+        table.getColumnModel().getColumn(Vars.password_length_index).setMinWidth(25);
+        table.getColumnModel().getColumn(Vars.password_length_index).setMaxWidth(50);
     }
 
     public static void draggable(JTable manager_table) {

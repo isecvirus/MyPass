@@ -14,7 +14,6 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 
 public class Theme {
-
     public static void toggle_theme(JFrame window, String theme) {
         try {
             String dark = Vars.dark_theme;
@@ -22,6 +21,7 @@ public class Theme {
 
             if (theme == light) {
                 UIManager.setLookAndFeel(new FlatLightLaf());
+                
             } else if (theme == dark) {
                 UIManager.setLookAndFeel(new FlatDarkLaf());
             }
