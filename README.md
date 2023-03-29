@@ -1,6 +1,10 @@
+![Logo](images/mypass-splash.png)
+
 # MyPass
 MyPass is a Cross platform password manager 100% safe and clean.
 
+# tutorial:
+  I'll make a tutorial soon.
 
 # Futures:
   - v3.0.0
