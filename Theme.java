@@ -2,6 +2,8 @@ package com.virus.MyPass;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import com.virus.MyPass.ui.ui_vars;
+import java.awt.Component;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -14,10 +16,10 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 
 public class Theme {
-    public static void toggle_theme(JFrame window, String theme) {
+    public static void toggle_theme(Component window, String theme) {
         try {
-            String dark = Vars.dark_theme;
-            String light = Vars.light_theme;
+            String dark = ui_vars.dark_theme;
+            String light = ui_vars.light_theme;
 
             if (theme == light) {
                 UIManager.setLookAndFeel(new FlatLightLaf());
