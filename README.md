@@ -1,12 +1,12 @@
 ![Logo](images/mypass-splash.png)
 
-# MyPass
+# 👨🏽‍💻 MyPass
 MyPass is a Cross platform password manager 100% safe and clean.
 
-# tutorial:
+# 📘 tutorial:
   I'll make a tutorial soon.
 
-# Versions:
+# 🔰 Versions:
   - <a href='https://github.com/isecvirus/MyPass/blob/a6094d551b3a9af2b781458841c1f8b37d368298/MyPass.java'>v4.2.0</a>
     - Changed encryption method (FROM: RSA 4096, TO: AES256), only using a phrase/key to decrypt the file data.
     - New UI (User interface) theme rgb(77, 122, 254).
@@ -40,11 +40,11 @@ MyPass is a Cross platform password manager 100% safe and clean.
   - <a href='https://github.com/isecvirus/PasswordGenerator/blob/30dacb29086b7d0eab2b67b00af0962bcfc9fcaa/pg-v1.0.java'>v1.0</a>
     - Simple Command line interface (CLI)
     - Password generator
-# Manual Compile:
+# ⚙️ Manual Compile:
   ```powershell
   jar -uf MyPass-[VERSION].jar [file1.jar, file2.jar, ...]
   ```
   1. Use <a href="https://anonfiles.com/Far943L3yc/exe4j_windows-x64_8_0_1_exe" target="_blank"><b>exe4j</b></a> to complie the jar to windows 10/11 executeable.
 
-# Viewer (site)
+# 🏞️ Viewer (site)
 <img src="viewer/screenshots/Screenshot (68).png">
