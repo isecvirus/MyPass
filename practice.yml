@@ -14,7 +14,7 @@ java-version:
 
 versions: &all-versions
     v4.2.0:
-      url: https://github.com/isecvirus/MyPass/blob/main/MyPass.java
+      url: https://github.com/isecvirus/MyPass/blob/a6094d551b3a9af2b781458841c1f8b37d368298/MyPass.java
       date: "2023-03-29"
       size: 55.1 KB
       lines: "1295"
@@ -34,12 +34,12 @@ versions: &all-versions
       size: 16.7 KB
       lines: "379"
   v2.0:
-      url: https://github.com/isecvirus/PasswordGenerator/blob/main/pg-v2%2C0.java
+      url: https://github.com/isecvirus/PasswordGenerator/blob/5c61ecdc854c61f865900379b12792c6969f6115/pg-v2%2C0.java
       date: "2022-08-11"
       size: 2.77 KB
       lines: "91"
     v1.0:
-      url: https://github.com/isecvirus/PasswordGenerator/blob/main/pg-v1.0.java
+      url: https://github.com/isecvirus/PasswordGenerator/blob/30dacb29086b7d0eab2b67b00af0962bcfc9fcaa/pg-v1.0.java
       date: "2022-08-10"
       size: 1.3 KB
       lines: "51"
