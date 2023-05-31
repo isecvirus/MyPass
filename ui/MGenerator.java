@@ -1,10 +1,9 @@
-package com.virus.MyPass.ui;
+package org.virus.mypass.ui;
 
 import com.formdev.flatlaf.icons.FlatMenuArrowIcon;
-import com.virus.MyPass.ui.ui_vars;
-import com.virus.MyPass.util.ClipBoard.Copy;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
+import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,19 +17,22 @@ import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPasswordField;
 import javax.swing.JPopupMenu;
+import javax.swing.JProgressBar;
 import javax.swing.JSeparator;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
+import org.virus.mypass.util.ClipBoard.Copy;
+import static org.virus.mypass.util.Strength.Shannon.passwordStrength;
+import org.virus.mypass.util.Misc.red2green;
 
 /**
  * MyPass Generator
@@ -42,7 +44,7 @@ public class MGenerator {
     public static void run(JFrame parent, JPasswordField... password_fields) {
         IconFontSwing.register(FontAwesome.getIconFont());
 
-        JDialog frame = new JDialog(parent);
+        JDialog frame = new JDialog(parent, true);
         frame.setTitle("Generator");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getRootPane().putClientProperty("JRootPane.titleBarBackground", ui_vars.color(25));
@@ -59,6 +61,7 @@ public class MGenerator {
         ActionListener run_generator, apply_listener;
         DocumentListener password_listener;
         JToolBar ResultPasswordToolBar, AlphabetUpperToolbar, AlphabetLowerToolbar, NumbersToolbar, PunctuationToolbar, CustomToolbar;
+        JProgressBar PasswordStrengthScale;
 
         // -----------------------------------
         ResultHistoryList = new ArrayList<>();
@@ -69,6 +72,14 @@ public class MGenerator {
         NumbersToolbar = new JToolBar();
         PunctuationToolbar = new JToolBar();
         CustomToolbar = new JToolBar();
+        PasswordStrengthScale = new JProgressBar();
+        
+        PasswordStrengthScale.setMaximum(100);
+        PasswordStrengthScale.setMinimum(0);
+        PasswordStrengthScale.setFocusable(false);
+        PasswordStrengthScale.setStringPainted(false); // text on progressbar
+        PasswordStrengthScale.applyComponentOrientation(parent.getComponentOrientation());
+        PasswordStrengthScale.setStringPainted(true);
 
         isAlphabetUpper = new JCheckBox("Alphabet (Upper Case)");
         isAlphabetUpper.setSelected(true);
@@ -100,7 +111,7 @@ public class MGenerator {
         AlphabetUpper.putClientProperty("JTextField.showClearButton", true);
         AlphabetUpper.putClientProperty("JTextField.placeholderText", "Alphabet Upper");
         AlphabetUpper.setToolTipText("Included upper letters");
-        KeyBoard.show(frame, AlphabetUpper);
+        KeyBoard.give(frame, AlphabetUpper);
 
         AlphabetLower = new JTextField();
         AlphabetLower.setText(gen_vars.lower_letters);
@@ -108,7 +119,7 @@ public class MGenerator {
         AlphabetLower.putClientProperty("JTextField.showClearButton", true);
         AlphabetLower.putClientProperty("JTextField.placeholderText", "Alphabet Lower");
         AlphabetLower.setToolTipText("Included lower letters");
-        KeyBoard.show(frame, AlphabetLower);
+        KeyBoard.give(frame, AlphabetLower);
 
         Numbers = new JTextField();
         Numbers.setText(gen_vars.numbers);
@@ -116,8 +127,7 @@ public class MGenerator {
         Numbers.putClientProperty("JTextField.showClearButton", true);
         Numbers.putClientProperty("JTextField.placeholderText", "Number");
         Numbers.setToolTipText("Included numbers");
-        KeyBoard.show(frame, Numbers);
-        
+        KeyBoard.give(frame, Numbers);
 
         Punctuation = new JTextField();
         Punctuation.setText(gen_vars.punctuations);
@@ -125,14 +135,14 @@ public class MGenerator {
         Punctuation.putClientProperty("JTextField.showClearButton", true);
         Punctuation.putClientProperty("JTextField.placeholderText", "Punctuation");
         Punctuation.setToolTipText("Included punctuations");
-        KeyBoard.show(frame, Punctuation);
+        KeyBoard.give(frame, Punctuation);
 
         Custom = new JTextField();
         Custom.setEnabled(false);
         Custom.putClientProperty("JTextField.showClearButton", true);
         Custom.putClientProperty("JTextField.placeholderText", "Custom");
         Custom.setToolTipText("Custom characters");
-        JButton CustomKeyboardButton = KeyBoard.show(frame, Custom);
+        JButton CustomKeyboardButton = KeyBoard.give(frame, Custom);
         CustomKeyboardButton.setEnabled(false);
 
         PasswordLength = new JSpinner();
@@ -146,29 +156,29 @@ public class MGenerator {
         ResultPassword.putClientProperty("FlatLaf.style", "showRevealButton: true");
 
         GenerateBtn = new JButton("Generate");
-        GenerateBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.RANDOM, ui_vars.icons_size, ui_vars.color));
+        GenerateBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.RANDOM, ui_vars.icons_size, ui_vars.default_accent));
         GenerateBtn.setEnabled(true);
 
         CopyBtn = new JButton("Copy");
-        CopyBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.color));
+        CopyBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.default_accent));
         CopyBtn.setEnabled(false);
 
         ClearBtn = new JButton("Clear");
-        ClearBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.ERASER, ui_vars.icons_size, ui_vars.color));
+        ClearBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.ERASER, ui_vars.icons_size, ui_vars.default_accent));
         ClearBtn.setEnabled(false);
 
         ResetBtn = new JButton("Reset");
-        ResetBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.RETWEET, ui_vars.icons_size, ui_vars.color));
+        ResetBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.RETWEET, ui_vars.icons_size, ui_vars.default_accent));
         ResetBtn.setEnabled(true);
 
         // --------------------
         RefillAlphabetUpper = new JButton();
-        RefillAlphabetUpper.setIcon(IconFontSwing.buildIcon(FontAwesome.RETWEET, ui_vars.icons_size, ui_vars.color));
+        RefillAlphabetUpper.setIcon(IconFontSwing.buildIcon(FontAwesome.RETWEET, ui_vars.icons_size, ui_vars.default_accent));
         RefillAlphabetUpper.setToolTipText("Refill");
         RefillAlphabetUpper.setEnabled(true);
 
         CopyAlphabetUpper = new JButton();
-        CopyAlphabetUpper.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.color));
+        CopyAlphabetUpper.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.default_accent));
         CopyAlphabetUpper.setToolTipText("Copy Alphabet Upper");
         CopyAlphabetUpper.setEnabled(true);
         CopyAlphabetUpper.addActionListener(e -> {
@@ -182,12 +192,12 @@ public class MGenerator {
 
         // --------------------
         RefillAlphabetLower = new JButton();
-        RefillAlphabetLower.setIcon(IconFontSwing.buildIcon(FontAwesome.RETWEET, ui_vars.icons_size, ui_vars.color));
+        RefillAlphabetLower.setIcon(IconFontSwing.buildIcon(FontAwesome.RETWEET, ui_vars.icons_size, ui_vars.default_accent));
         RefillAlphabetLower.setToolTipText("Refill");
         RefillAlphabetLower.setEnabled(true);
 
         CopyAlphabetLower = new JButton();
-        CopyAlphabetLower.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.color));
+        CopyAlphabetLower.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.default_accent));
         CopyAlphabetLower.setToolTipText("Copy Alphabet Lower");
         CopyAlphabetLower.setEnabled(true);
         CopyAlphabetLower.addActionListener(e -> {
@@ -201,12 +211,12 @@ public class MGenerator {
 
         // --------------------
         RefillNumbers = new JButton();
-        RefillNumbers.setIcon(IconFontSwing.buildIcon(FontAwesome.RETWEET, ui_vars.icons_size, ui_vars.color));
+        RefillNumbers.setIcon(IconFontSwing.buildIcon(FontAwesome.RETWEET, ui_vars.icons_size, ui_vars.default_accent));
         RefillNumbers.setToolTipText("Refill");
         RefillNumbers.setEnabled(true);
 
         CopyNumbers = new JButton();
-        CopyNumbers.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.color));
+        CopyNumbers.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.default_accent));
         CopyNumbers.setToolTipText("Copy Numbers");
         CopyNumbers.setEnabled(true);
         CopyNumbers.addActionListener(e -> {
@@ -220,12 +230,12 @@ public class MGenerator {
 
         // --------------------
         RefillPunctuation = new JButton();
-        RefillPunctuation.setIcon(IconFontSwing.buildIcon(FontAwesome.RETWEET, ui_vars.icons_size, ui_vars.color));
+        RefillPunctuation.setIcon(IconFontSwing.buildIcon(FontAwesome.RETWEET, ui_vars.icons_size, ui_vars.default_accent));
         RefillPunctuation.setToolTipText("Refill");
         RefillPunctuation.setEnabled(true);
 
         CopyPunctuation = new JButton();
-        CopyPunctuation.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.color));
+        CopyPunctuation.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.default_accent));
         CopyPunctuation.setToolTipText("Copy Punctuations");
         CopyPunctuation.setEnabled(true);
         CopyPunctuation.addActionListener(e -> {
@@ -239,7 +249,7 @@ public class MGenerator {
 
         // --------------------
         CopyCustom = new JButton();
-        CopyCustom.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.color));
+        CopyCustom.setIcon(IconFontSwing.buildIcon(FontAwesome.CLIPBOARD, ui_vars.icons_size, ui_vars.default_accent));
         CopyCustom.setToolTipText("Copy Custom Characters");
         CopyCustom.setEnabled(false);
         CopyCustom.addActionListener(e -> {
@@ -252,11 +262,12 @@ public class MGenerator {
 
         // --------------------
         ApplyBtn = new JButton("Apply");
-        ApplyBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.CHECK, ui_vars.icons_size, ui_vars.color));
+        ApplyBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.CHECK, ui_vars.icons_size, ui_vars.default_accent));
         ApplyBtn.setEnabled(false);
         if (password_fields == null) {
             ApplyBtn.setText("Exit");
-            ApplyBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.POWER_OFF, ui_vars.icons_size, ui_vars.color));
+            ApplyBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.POWER_OFF, ui_vars.icons_size, ui_vars.default_accent));
+            ApplyBtn.setEnabled(true);
         }
 
         ResultHistoryBtn = new JButton((Icon) new FlatMenuArrowIcon());
@@ -277,7 +288,7 @@ public class MGenerator {
         });
 
         ClearPasswordsHistoryBtn = new JButton();
-        ClearPasswordsHistoryBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.ERASER, ui_vars.icons_size, ui_vars.color));
+        ClearPasswordsHistoryBtn.setIcon(IconFontSwing.buildIcon(FontAwesome.ERASER, ui_vars.icons_size, ui_vars.default_accent));
         ClearPasswordsHistoryBtn.setEnabled(false);
         ClearPasswordsHistoryBtn.setToolTipText("Clear History");
 
@@ -335,7 +346,11 @@ public class MGenerator {
                     }
                 } catch (Exception error) {
                 }
-
+                
+                int password_strength = passwordStrength(password);
+                PasswordStrengthScale.setValue(password_strength);
+                PasswordStrengthScale.setForeground(Color.decode((String)red2green.Red2Green().get(password_strength - 1)));
+                PasswordStrengthScale.setToolTipText(String.format("%d%%", password_strength));
                 return password;
             }
 
@@ -558,7 +573,6 @@ public class MGenerator {
         Numbers.getDocument().addDocumentListener(doc_listener);
         Punctuation.getDocument().addDocumentListener(doc_listener);
         Custom.getDocument().addDocumentListener(doc_listener);
-        
 
         layout = new GroupLayout(frame.getContentPane());
         frame.getContentPane().setLayout(layout);
@@ -575,6 +589,7 @@ public class MGenerator {
                                         .addComponent(AlphabetUpper)
                                         .addComponent(Custom)
                                         .addComponent(ResultPassword)
+                                        .addComponent(PasswordStrengthScale)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(GenerateBtn)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -630,6 +645,8 @@ public class MGenerator {
                                         .addComponent(isAutoGenerate))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                                 .addComponent(ResultPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(PasswordStrengthScale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(CopyBtn)
@@ -692,7 +709,7 @@ public class MGenerator {
 
         // ---------------------------------------------------------------------
         frame.pack();
-        frame.setAlwaysOnTop(true);
+        frame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         frame.setResizable(false);
         frame.setModal(true);
         frame.setLocationRelativeTo(parent);

@@ -1,4 +1,4 @@
-package com.virus.MyPass.util.AES;
+package org.virus.mypass.util.AES;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;

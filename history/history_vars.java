@@ -1,4 +1,4 @@
-package com.virus.MyPass.history;
+package org.virus.mypass.history;
 
 import java.util.ArrayList;
 import java.util.List;

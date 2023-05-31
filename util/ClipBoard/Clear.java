@@ -1,4 +1,4 @@
-package com.virus.MyPass.util.ClipBoard;
+package org.virus.mypass.util.ClipBoard;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;

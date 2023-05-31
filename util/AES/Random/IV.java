@@ -1,4 +1,4 @@
-package com.virus.MyPass.util.AES.Random;
+package org.virus.mypass.util.AES.Random;
 
 import java.util.Random;
 

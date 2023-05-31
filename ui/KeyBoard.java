@@ -1,7 +1,7 @@
-package com.virus.MyPass.ui;
+package org.virus.mypass.ui;
 
-import com.virus.MyPass.Theme;
 import java.awt.Component;
+import java.awt.Dialog;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +16,7 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
+import org.virus.mypass.ui.Accent;
 
 /**
  *
@@ -23,7 +24,7 @@ import jiconfont.swing.IconFontSwing;
  */
 public class KeyBoard {
 
-    public static JButton show(Component parent, JTextField comp) {
+    public static JButton give(Component parent, JTextField comp) {
         JButton $0, $1, $2, $3, $4, $5, $6, $7, $8, $9,
                 a, b, c, d, e, f, g, h, i, j, k, l, m,
                 n, o, p, q, r, s, t, u, v, w, x, y, z,
@@ -476,7 +477,7 @@ public class KeyBoard {
         caps_lock.setFont(
                 new java.awt.Font("Segoe UI", 1, 12));
         caps_lock.setForeground(
-                new java.awt.Color(77, 122, 254));
+                Accent.AlphaSetGet(255));
         caps_lock.setText(
                 "Caps Lock");
         caps_lock.setFocusable(
@@ -485,7 +486,7 @@ public class KeyBoard {
         backspace.setFont(
                 new java.awt.Font("Segoe UI", 1, 12));
         backspace.setForeground(
-                new java.awt.Color(77, 122, 254));
+                Accent.AlphaSetGet(255));
         backspace.setText(
                 "Back Space");
         backspace.setFocusable(
@@ -579,7 +580,7 @@ public class KeyBoard {
         space.setFont(
                 new java.awt.Font("Segoe UI", 1, 12));
         space.setForeground(
-                new java.awt.Color(77, 122, 254));
+                Accent.AlphaSetGet(255));
         space.setText(
                 "Space");
         space.setFocusable(
@@ -951,7 +952,7 @@ public class KeyBoard {
         );
 
         KeyboardButton = new JButton();
-        KeyboardButton.setIcon(IconFontSwing.buildIcon(FontAwesome.KEYBOARD_O, ui_vars.icons_size, ui_vars.color));
+        KeyboardButton.setIcon(IconFontSwing.buildIcon(FontAwesome.KEYBOARD_O, ui_vars.icons_size, ui_vars.default_accent));
         KeyboardButton.setToolTipText("KeyBoard");
 
         JToolBar toolbar = new JToolBar();
@@ -967,6 +968,7 @@ public class KeyBoard {
             frame.setResizable(false);
             frame.setModal(true);
             frame.setLocationRelativeTo(parent);
+            frame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             frame.setVisible(true);
         });
         return KeyboardButton;

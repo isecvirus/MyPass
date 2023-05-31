@@ -1,4 +1,4 @@
-package com.virus.MyPass.ui;
+package org.virus.mypass.ui;
 
 /**
  *

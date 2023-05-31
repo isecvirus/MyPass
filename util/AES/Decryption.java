@@ -1,4 +1,4 @@
-package com.virus.MyPass.util.AES;
+package org.virus.mypass.util.AES;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -14,8 +14,8 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
-import com.virus.MyPass.util.AES.Random.Salt;
-import com.virus.MyPass.util.AES.Random.IV;
+import org.virus.mypass.util.AES.Random.Salt;
+import org.virus.mypass.util.AES.Random.IV;
 import javax.swing.JOptionPane;
 
 /**

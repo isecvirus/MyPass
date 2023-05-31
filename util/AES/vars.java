@@ -1,4 +1,4 @@
-package com.virus.MyPass.util.AES;
+package org.virus.mypass.util.AES;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
