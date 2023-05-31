@@ -2,7 +2,7 @@ package org.virus.mypass;
 
 /*
  *
- * MyPass (v4.3.0) - By SecVirus (c) 4Ever
+ * MyPass (v4.3.1) - By SecVirus (c) 4Ever
  *
  *
  * This file contains the main class.
