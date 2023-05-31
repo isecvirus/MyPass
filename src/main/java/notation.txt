@@ -9,7 +9,7 @@
 ❌  9. Password sharing: You could add a feature that allows users to securely share passwords with other users.
 ✅ 10. Password history: You could add a feature that keeps track of the user’s password history, allowing them to see their previous passwords and when they were changed.
 ❌ 11. Multi-device synchronization: You could add a feature that allows the user to synchronize their password data across multiple devices.
-❌ 12. Password categorization: You could add a feature that allows the user to categorize their passwords by type (e.g. work, personal, financial, etc.).
+✅ 12. Password categorization: You could add a feature that allows the user to categorize their passwords by type (e.g. work, personal, financial, etc.).
 ✅ 13. Password strength report: You could add a feature that generates a report on the strength of all the passwords in the user’s database, highlighting any weak or duplicate passwords.
 ❌ 14. Password expiration report: You could add a feature that generates a report on the expiration dates of all the passwords in the user’s database, highlighting any passwords that are about to expire.
 ❌ 15. Password lockout: You could add a feature that locks the user out of their account after a certain number of failed login attempts, to prevent brute-force attacks.
@@ -29,71 +29,3 @@
 ❌ 29. Password sharing with non-users: You could add a feature that allows users to securely share passwords with non-users, such as contractors or clients, without giving them full access to the password manager.
 ❌ 30. USB detection on insert (Detect USB and read it's content for a decryption key and data file).
 ❌ 31. Export data to other password managers.
-❌ 32. Category system for entities.
-❌ 33. 
-❌ 34. 
-❌ 35. 
-❌ 36. 
-❌ 37. 
-❌ 38. 
-❌ 39. 
-❌ 40. 
-❌ 41. 
-❌ 42. 
-❌ 43. 
-❌ 44. 
-❌ 45. 
-❌ 46. 
-❌ 47. 
-❌ 48. 
-❌ 49. 
-❌ 50. 
-❌ 51. 
-❌ 52. 
-❌ 53. 
-❌ 54. 
-❌ 55. 
-❌ 56. 
-❌ 57. 
-❌ 58. 
-❌ 59. 
-❌ 60. 
-❌ 61. 
-❌ 62. 
-❌ 63. 
-❌ 64. 
-❌ 65. 
-❌ 66. 
-❌ 67. 
-❌ 68. 
-❌ 69. 
-❌ 70. 
-❌ 71. 
-❌ 72. 
-❌ 73. 
-❌ 74. 
-❌ 75. 
-❌ 76. 
-❌ 77. 
-❌ 78. 
-❌ 79. 
-❌ 80. 
-❌ 81. 
-❌ 82. 
-❌ 83. 
-❌ 84. 
-❌ 85. 
-❌ 86. 
-❌ 87. 
-❌ 88. 
-❌ 89. 
-❌ 90. 
-❌ 91. 
-❌ 92. 
-❌ 93. 
-❌ 94. 
-❌ 95. 
-❌ 96. 
-❌ 97. 
-❌ 98. 
-❌ 99. 
