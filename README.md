@@ -7,6 +7,8 @@ MyPass is a Cross platform password manager 100% safe and clean.
   I'll make a tutorial soon.
 
 # 🔰 Versions:
+  - <a href='https://github.com/isecvirus/MyPass/blob/a6094d551b3a9af2b781458841c1f8b37d368298/MyPass.java'>v4.3.1</a>
+    - I'll write it soon (:
   - <a href='https://github.com/isecvirus/MyPass/blob/a6094d551b3a9af2b781458841c1f8b37d368298/MyPass.java'>v4.2.0</a>
     - Changed encryption method (FROM: RSA 4096, TO: AES256), only using a phrase/key to decrypt the file data.
     - New UI (User interface) theme rgb(77, 122, 254).
