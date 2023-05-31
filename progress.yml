@@ -13,8 +13,8 @@ java-version:
       build: (build 18.0.1.1+2-6)
 
 versions: &all-versions
-    v4.2.0:
-      url: https://github.com/isecvirus/MyPass/blob/a6094d551b3a9af2b781458841c1f8b37d368298/MyPass.java
+    v4.3.1:
+      url: https://github.com/isecvirus/MyPass/blob/236d230d5c729c6240f52a0dfd56c8151e9d6c32/MyPass.java
       date: "2023-05-31"
       size: 82.3 KB
       lines: "1806"
