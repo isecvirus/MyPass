@@ -1,4 +1,4 @@
-![Logo](images/mypass-splash.png)
+![Logo](images/mypass.png)
 
 # 👨🏽‍💻 MyPass
 MyPass is a Cross platform password manager 100% safe and clean.
