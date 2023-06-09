@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    background: #111111;
+    position: relative;
+}
+
+.warning-message {
+    width: 100;
+    text-align: center;
+    background: red;
+    padding: 10px 0 10px 0;
+    user-select: none;
+}
+
+.no-message {
+    display: none;
+}
+
+.logo {
+    width: 500px;
+    margin: 0 auto;
+    display: block;
+    user-select: none;
+}
+
+.version-title {
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    color: white;
+}
+
+.version {
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    color: white;
+}
+
+.docs {
+    margin: 0 auto;
+    width: fit-content;
+    display: flex;
+    margin-top: 15%;
+    background: #ff2121;
+    padding: 10px 50px 10px 50px; /* top, right, bottom, left */
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+    user-select: none;
+    transition: 0.25s;
+}
+
+.docs:hover {
+    background: #da2020;
+}
+
+.docs:active {
+    background: #b61a1a;
+}
+
+.disabled {
+    background: #222222;
+    pointer-events: none;
+}
+
+.disabled:hover {
+    background: #222222;
+}
+
+.disabled:active {
+    background: #222222;
+}
+
+footer {
+    position: fixed;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.github-link {
+    text-decoration: none;
+    color: rgb(255, 0, 0);
+}
