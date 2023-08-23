@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MyPass</title>
+    <link rel="stylesheet" href="mp.css" />
+    <script src="mp.js" defer></script>
+  </head>
+  <body>
+    <div class="logo">
+      <img src="mp.png" alt="mypass" width="64" height="64" draggable="false" />
+    </div>
+    <div class="chars-settings-cont">
+      <div class="uppers">
+        <input type="checkbox" id="contain-uppers" checked />
+        <input id="upper-chars" class="field" type="text" placeholder="upper" />
+        <hr />
+        <button id="reset-upper-chars" class="reset-btn">reset</button>
+      </div>
+
+      <div class="lowers">
+        <input type="checkbox" id="contain-lowers" checked />
+        <input id="lower-chars" class="field" type="text" placeholder="lower" />
+        <hr />
+        <button id="reset-lower-chars" class="reset-btn">reset</button>
+      </div>
+
+      <div class="numbers">
+        <input type="checkbox" id="contain-numbers" checked />
+        <input
+          id="number-chars"
+          class="field"
+          type="text"
+          placeholder="number"
+        />
+        <hr />
+        <button id="reset-number-chars" class="reset-btn">reset</button>
+      </div>
+
+      <div class="punctuations">
+        <input type="checkbox" id="contain-punctuations" checked />
+        <input
+          id="punctuation-chars"
+          class="field"
+          type="text"
+          placeholder="punctuation"
+        />
+        <hr />
+        <button id="reset-punctuation-chars" class="reset-btn">reset</button>
+      </div>
+
+      <div class="customs">
+        <input type="checkbox" id="contain-customs" />
+        <input
+          id="custom-chars"
+          class="field"
+          type="text"
+          placeholder="custom"
+          title="custom characters"
+        />
+        <hr />
+        <button id="clear-custom-chars" class="reset-btn">clear</button>
+      </div>
+
+      <input
+        class="spinner"
+        type="number"
+        value="12"
+        min="1"
+        max="1000"
+        title="length"
+        inputmode="numeric"
+        step="1"
+        onkeydown="return false;"
+        onfocus="this.blur()"
+      />
+    </div>
+    <!-- <div class="settings-cont"> Settings container </div> -->
+
+    <div class="output-cont">
+      <!-- Output container -->
+      <input id="password" class="field" type="password" />
+      <input type="checkbox" name="show" id="show" />
+    </div>
+    <button class="generate">Generate</button>
+  </body>
+</html>

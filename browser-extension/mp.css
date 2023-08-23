@@ -1,0 +1,144 @@
+html {
+    background-color: #222222; /* #ff2121 */
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+}
+
+body {
+    box-sizing: border-box;
+    width: fit-content;
+}
+
+.logo {
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.logo img {
+    width: 64px;
+    height: 64px;
+    user-select: none;
+}
+
+.output-cont {
+    /* width: 100%; */
+    margin-top: 50px;
+    display: flex;
+    background-color: #cccccc00;
+    border: 0.5px solid #ffffff62;
+    border-radius: 2.5px;
+}
+
+#password {
+    width: 100%;
+    border: none;
+}
+
+.field:focus .output-cont {
+    border: 0.5px solid #ffffffb9;
+    background-color: #cccccc17;
+}
+
+#show {
+    position: relative;
+}
+
+.chars-settings-cont {
+    margin-bottom: 10px;
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.settings-cont {}
+
+
+.field, .spinner {
+    background-color: #cccccc00;
+    border: 0.5px solid #ffffff62;
+    border-radius: 2.5px;
+    padding: 5px;
+    color: #ffffff;
+    outline: none;
+    transition: 0.25s;
+    /* width: 100%; */
+}
+
+.field:focus {
+    border: 0.5px solid #ffffffb9;
+    background-color: #cccccc17;
+}
+
+#upper-chars, #lower-chars, #number-chars, #punctuation-chars, #custom-chars {
+    margin-bottom: 2.5px;
+}
+
+.reset-btn {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 4px;
+    margin-left: 3px;
+    transition: 0.25s;
+}
+
+.reset-btn:hover {
+    background-color: #cccccc41;
+}
+
+.reset-btn:active {
+    background-color: #cccccc36;
+    border: 1px solid #ffffffa8;
+}
+
+.uppers, .lowers, .numbers, .punctuations, .customs {
+    background-color: #9c9c9c2d;
+    padding: 3px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    display: flex;
+}
+
+.uppers input, .lowers input, .numbers input, .punctuations input, .customs input {
+    border: none;
+    margin-top: 4px;
+    margin-left: 3px;
+    margin-right: 3px;
+    user-select: none;
+}
+
+.uppers input:focus, .lowers input:focus, .numbers input:focus, .punctuations input:focus, .customs input:focus {
+    border: none;
+}
+
+.spinner {
+    /* margin-top: 10px; */
+}
+
+.generate {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 5px;
+
+    background-color: transparent;
+    border: 0.5px solid #ffffffcc;
+    border-radius: 2.5px;
+    color: #ffffff;
+    padding: 5px;
+
+    transition: 0.25s;
+}
+
+.generate:hover {
+    background-color: #ffffff17;
+}
+
+.generate:active {
+    background-color: #ffffff0c;
+    border: 0.5px solid #ffffff;
+}
